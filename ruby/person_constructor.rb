@@ -4,15 +4,13 @@ class Person
     if last_name == nil && middle_name == nil
       name_arr = name.split(' ')
       @first_name = name_arr[0]
-      if name_arr.length == 3
-        @middle_name = name_arr[1]
-        @last_name = name_arr[2]
-      elsif name_arr.length == 2
+      name_arr.shift
+      if name_arr.length == 2
+        @middle_name = name_arr[0]
         @last_name = name_arr[1]
+      elsif name_arr.length == 1
+        @last_name = name_arr[0]
       end
-    elsif middle_name == nil
-      @first_name = name
-      @last_name = last_name
     else
       @first_name = name
       @last_name = last_name
