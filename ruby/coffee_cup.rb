@@ -1,28 +1,34 @@
 class Cup
-  attr_reader :max_capacity
-  attr_accessor :amount
 
+  attr_accessor :amount, :max_capacity
   def initialize(amount = 8.0, max_capacity = 12.0)
     @amount = amount
     @max_capacity = max_capacity
-    check_for_valid
+    check_for_valid_max_capacity
+    check_for_valid_amount
   end
-  
-  def check_for_valid
-    if max_capacity > 2.0
+
+  def check_for_valid_max_capacity
+    if max_capacity >= 2.0
       @max_capacity = max_capacity
     else
       puts "This cup is too small"
       @amount = nil
+      @max_capacity = nil;
     end
-    if @amount > max_capacity - 2
-      if amount > max_capacity
-        puts "The cup spilleth over.  Make a new cup"
-      else
-        puts "I cant add this much coffee.  Sorry about that. Make a new cup"
+  end
+
+  def check_for_valid_amount
+    if !max_capacity.nil?
+      if @amount > max_capacity - 2
+        if amount > max_capacity
+          puts "The cup spilleth over.  Make a new cup"
+        else
+          puts "I cant add this much coffee.  Sorry about that. Make a new cup"
+        end
+        @amount = nil
+        @max_capacity = nil
       end
-      @amount = nil
-      @max_capacity = nil
     end
   end
 
