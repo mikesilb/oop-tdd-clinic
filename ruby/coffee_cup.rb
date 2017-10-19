@@ -13,22 +13,20 @@ class Cup
       @max_capacity = max_capacity
     else
       puts "This cup is too small"
-      @amount = nil
-      @max_capacity = nil;
+      @amount = 0
+      @max_capacity = 0;
     end
   end
 
   def check_for_valid_amount
-    if !max_capacity.nil?
-      if @amount > max_capacity - 2
-        if amount > max_capacity
-          puts "The cup spilleth over.  Make a new cup"
-        else
-          puts "I cant add this much coffee.  Sorry about that. Make a new cup"
-        end
-        @amount = nil
-        @max_capacity = nil
+    if @amount > max_capacity - 2
+      if amount > max_capacity
+        puts "The cup spilleth over.  Make a new cup"
+      else
+        puts "I cant add this much coffee.  Sorry about that. Make a new cup"
       end
+      @amount = nil
+      @max_capacity = nil
     end
   end
 
