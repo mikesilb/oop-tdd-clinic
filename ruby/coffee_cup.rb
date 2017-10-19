@@ -4,6 +4,11 @@ class Cup
 
   def initialize(amount = 8.0, max_capacity = 12.0)
     @amount = amount
+    @max_capacity = max_capacity
+    check_for_valid
+  end
+  
+  def check_for_valid
     if max_capacity > 2.0
       @max_capacity = max_capacity
     else
