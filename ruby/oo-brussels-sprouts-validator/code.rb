@@ -1,8 +1,22 @@
 class Ingredient
-  def initialize(quantity, units, name)
+  attr_reader :quantity, :unit, :name
+  def initialize(quantity= nil, unit = nil, name)
+    if quantity == nil
+      Ingredient.parse(name) 
+    end
     @quantity = quantity
-    @units = units
+    @unit = unit
     @name = name
+  end
+
+  def self.parse(ingredient_string)
+    ingredient_array = ingredient_string.split(" ")
+    @quantity = ingredient_array[0].to_f
+    @unit = ingredient_array[1]
+    ingredient_array.shift
+    ingredient_array.shift
+    @name = ingredient_array.join (" ")
+    Ingredient.new(@quantity, @unit, @name)
   end
 
   def summary
