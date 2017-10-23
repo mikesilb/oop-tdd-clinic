@@ -1,5 +1,6 @@
 // Meets Expectations
 let bestieGroceryItems = [new GroceryItem("apple", .50, 5), new GroceryItem("avocado", 2.00, 2), new GroceryItem("beer", 2.50, 4), new GroceryItem("kale", 2.00) ];
+let bestiesList = new GroceryList("Bestie", bestieGroceryItems);
 
 summary = (GroceryItems) => {
   let sum = 0;
@@ -47,3 +48,8 @@ let inventoryNearBestie = {
   avocado: 10,
   milk: 5
 };
+
+console.log("\n\nChecking the inventory of inventoryNearBestie");
+bestiesList.checkInventory(inventoryNearBestie);
+console.log("\n\nChecking the inventory of inventoryNearMe");
+bestiesList.checkInventory(inventoryNearMe);
