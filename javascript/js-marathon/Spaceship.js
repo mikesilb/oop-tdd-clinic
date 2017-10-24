@@ -22,6 +22,7 @@ let Spaceship = class Spaceship {
   takeoff(){
     console.log('\n\n\nAttempting to takeoff')
     this.propulsion.fire();
+    console.log('\n\n\n');
   }
 };
 
