@@ -1,11 +1,16 @@
 // YOUR CODE GOES HERE
 let Spaceship = require('./Spaceship');
 let CrewMember = require('./Crewmember');
-let launchpad = (nameOfShip, listofCrew) => {
+let Rocket = require('./Rocket');
+let launchpad = (nameOfShip, listofCrew, addRocketFuel) => {
   console.log("Getting ready to launch!");
   console.log("The name of the ship is " + nameOfShip.name);
-  nameOfShip.loadCrew(crewNames);
+  nameOfShip.loadCrew;
   nameOfShip.captain();
+  nameOfShip.mountPropulsion(rocket);
+  nameOfShip.takeoff();
+  nameOfShip.propulsion.addFuel(addRocketFuel);
+  nameOfShip.takeoff();
 };
 
 let trainCrew = (nameArr) => {
@@ -20,6 +25,7 @@ let trainCrew = (nameArr) => {
 
 let crewNames = ["Jack", "Jim", "Mike", "Stephanie", "Florence", "Alice" ];
 let ourShip = new Spaceship('JAVASHIPT');
+let rocket = new Rocket();
 
-launchpad(ourShip);
+launchpad(ourShip, crewNames, 500);
 trainCrew(crewNames);

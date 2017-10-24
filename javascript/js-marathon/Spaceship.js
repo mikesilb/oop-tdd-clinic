@@ -1,7 +1,8 @@
 let Spaceship = class Spaceship {
-  constructor(name, crew = []){
+  constructor(name, crew = [], propulsion){
     this.name = name;
     this.crew = crew;
+    this.propulsion = propulsion;
   }
   loadCrew(crewMemberArr){
     crewMemberArr.forEach((crewMember => {
@@ -13,6 +14,14 @@ let Spaceship = class Spaceship {
     let number = this.crew.length;
     let randomNumber = Math.floor(Math.random() * number);
     console.log(`The captain of ${this.name} is ${this.crew[randomNumber]}`);
+  }
+  mountPropulsion(theRocket){
+    this.propulsion = theRocket;
+    console.log(`The propulsion has mounted!`);
+  }
+  takeoff(){
+    console.log('\n\n\nAttempting to takeoff')
+    this.propulsion.fire();
   }
 };
 
