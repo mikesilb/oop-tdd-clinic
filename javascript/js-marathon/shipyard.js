@@ -5,6 +5,7 @@ let launchpad = (nameOfShip, listofCrew) => {
   console.log("Getting ready to launch!");
   console.log("The name of the ship is " + nameOfShip.name);
   nameOfShip.loadCrew(crewNames);
+  nameOfShip.captain();
 };
 
 let trainCrew = (nameArr) => {
