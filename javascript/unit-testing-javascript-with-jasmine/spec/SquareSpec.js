@@ -69,6 +69,10 @@ describe("Square", () => {
       let square = new Square(1)
       expect(square.containsPoint(0.5, 0.5)).toBe(true)
     })
+    it("returns not true for a point not on the edge of a square", () => {
+      let square = new Square(1)
+      expect(square.containsPoint(4, 3)).toBe(false)
+    })
 
     it("returns false for points outside of the square", () => {
       let square = new Square(1)
