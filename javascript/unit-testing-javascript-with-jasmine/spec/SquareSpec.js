@@ -1,3 +1,4 @@
+var Square = require('../src/Square');
 describe("Square", () => {
   describe("new Square()", () => {
     it("takes a value for the length of a side", () => {

@@ -14,3 +14,5 @@ class Circle {
     return 2 * Math.PI * this.radius
   }
 }
+
+module.exports = Circle;
