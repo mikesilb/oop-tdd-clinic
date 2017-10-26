@@ -9,6 +9,7 @@ gem 'listen'
 gem 'devise'
 gem 'rake'
 group :development, :test do
+  gem 'travis'
   gem 'jasmine'
   gem 'capybara'
   gem "dotenv-rails"
