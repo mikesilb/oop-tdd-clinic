@@ -55,6 +55,11 @@ describe("Circle", () => {
       expect(circle.area()).toBeCloseTo(12.57)
     })
 
+    it("returns 12.57 when the radius is 4", () => {
+      let circle = new Circle(4)
+      expect(circle.area()).toBeCloseTo(50.28)
+    })
+
     it("returns 0.785 when the radius is 0.5", () => {
       let circle = new Circle(0.5)
       expect(circle.area()).toBeCloseTo(0.785)
