@@ -38,6 +38,11 @@ describe("Circle", () => {
       expect(circle.diameter).toBe(20)
     })
 
+    it("returns 40 when the radius is 20", () => {
+      let circle = new Circle(20)
+      expect(circle.diameter).toBe(40)
+    })
+
     it("returns 0.5 when the radius is 0.25", () => {
       let circle = new Circle(0.25)
       expect(circle.diameter).toBe(0.5)
