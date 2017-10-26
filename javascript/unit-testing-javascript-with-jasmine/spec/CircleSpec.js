@@ -1,3 +1,5 @@
+var Circle = require('../src/Circle');
+
 describe("Circle", () => {
   describe("new Circle()", () => {
     it("takes a value for the radius", () => {
@@ -60,9 +62,9 @@ describe("Circle", () => {
       expect(circle.area()).toBeCloseTo(12.57)
     })
 
-    it("returns 12.57 when the radius is 4", () => {
+    it("returns 50.27 when the radius is 4", () => {
       let circle = new Circle(4)
-      expect(circle.area()).toBeCloseTo(50.28)
+      expect(circle.area()).toBeCloseTo(50.27)
     })
 
     it("returns 0.785 when the radius is 0.5", () => {
