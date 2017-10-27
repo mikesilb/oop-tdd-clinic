@@ -1,0 +1,7 @@
+---
+title: "Test Reverse String Function"
+type: "exercise"  # challenge, exercise, article, video
+description: "Write tests for an existing JavaScript function."
+tags: "javascript"
+ignore:
+- "test-reverse-string-function.md"
