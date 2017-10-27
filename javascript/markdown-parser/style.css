@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto|Inconsolata);
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto Slab", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+body {
+  font-family:  Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2rem;
+  color: #646464;
+  background-color: #F6F6F7;
+}
+
+#markdown-input {
+  font-family: Inconsolata, Consolas, "Liberation Mono", Courier, monospace;
+  font-size: 2rem;
+  width: 100%;
+  height: 450px;
+}
+
+.markdown-syntax iframe {
+  width: 100%;
+  height: 800px;
+}
+
+strong {
+  color: black;
+}
