@@ -1,0 +1,7 @@
+---
+title: "Markdown Parser"
+type: "challenge"  # challenge, exercise, article, video
+description: "Create a webapp that translates Markdown into HTML."
+tags: "javascript"
+ignore:
+- "markdown-parser.md"
