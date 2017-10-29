@@ -19,7 +19,7 @@ describe Hand do
   let(:hand16) { Hand.new([Card.new("♥","A"), Card.new("♦",6), Card.new("♠","A")]) }
   let(:hand17) { Hand.new([Card.new("♥","A"), Card.new("♦","A"), Card.new("♠","A")]) }
   let(:hand18) { Hand.new([Card.new("♥","A"), Card.new("♦","A"), Card.new("♠","A"), Card.new("♣","A")]) }
-
+ 
   describe "#calculate_hand" do
     it "adds two numbers properly" do
       expect(hand1.calculate_hand).to eq(5)
