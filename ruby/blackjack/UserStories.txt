@@ -1,0 +1,132 @@
+The program should satisfy the following user stories:
+
+1. Deal initial hand
+
+As a dealer
+I want to initially deal out two cards to the current player
+So that we can begin the game
+
+Acceptance Criteria:
+
+A. Cards are dealt from a shuffled deck of 52 cards.
+B. Output Player was dealt CARD for each card the player receives.
+C. Output Dealer was dealt CARD for each card the dealer receives.
+
+
+
+2. Prompt for input
+
+As a player
+I want to be prompted to hit or stand
+So that I know when I have to act
+
+Acceptance Criteria:
+
+A. Prompt the player to hit or stand after they receive their initial hand.
+B. Continue prompting unless the player stands or busts.
+C. Output Hit or stand (H/S): and read the user input on the same line.
+D. Notify the user when the input is invalid (neither hit or stand) and re-prompt.
+E. Allow uppercase or lowercase characters as user input.
+
+
+
+
+3. Display score
+
+As a player
+I want to know my current best possible score
+So that I can decide whether to hit or stand
+
+Acceptance Criteria:
+
+A. Display the player's score each time they have to hit or stand.
+B. Output Players score: SCORE on a separate line.
+C. Aces should count as one or eleven, whichever is closest to 21 without going over.
+
+
+
+
+4. Player hits
+
+As a player
+I want to hit
+So that I can increase my score
+
+Acceptance Criteria:
+
+A. "Hit" takes another card from the deck and places it in the player's hand.
+B. The player's best possible score should be recalculated and displayed again.
+C. If the player busts, output Bust! Game over... and exit the game.
+
+
+
+
+5. Player stands
+
+As a player
+I want to stand
+So that I don't bust
+
+Acceptance Criteria:
+
+A. "Stand" will end the player's turn and begin the dealer's turn.
+B. The player's best possible score should be recalculated and displayed again.
+
+
+
+6. Dealer hits until score threshold
+
+As a dealer
+I want to continue hitting until my score is at least 17
+So that I get close to 21 without too much risk of busting.
+
+Acceptance Criteria:
+
+A. While the dealer's best possible hand is below 17, continue hitting.
+B. If the dealer's lowest score exceeds 21, output Bust! You win!.
+
+
+-----------------------------------------------------------
+Sample Output # 1
+
+$ ./blackjack.rb
+Welcome to Blackjack!
+
+Player was dealt 10♦
+Player was dealt A♣
+Player score: 21
+
+Hit or stand (H/S): s
+
+Player score: 21
+
+
+Dealer was dealt Q♠
+Dealer was dealt 8♥
+Dealer score: 18
+
+Dealer stands.
+
+You win!
+
+
+
+Sample Output # 2
+$ ./blackjack.rb
+Welcome to Blackjack!
+
+Player was dealt 7♦
+Player was dealt 5♥
+Player score: 12
+
+Hit or stand (H/S): h
+
+Player was dealt 2♥
+Player score: 14
+
+Hit or stand (H/S): h
+
+Player was dealt J♠
+Player score: 24
+
+Bust! You lose...
