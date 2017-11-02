@@ -14,7 +14,11 @@ class Deck
     the_deck.shuffle!
   end
 
-  def deal(num_cards = 1 )
-    @the_deck.pop(num_cards)
+  def deal(num_cards)
+    if num_cards > 1
+      @the_deck.pop(num_cards)
+    else
+      @the_deck.pop
+    end
   end
 end
