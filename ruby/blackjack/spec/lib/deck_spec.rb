@@ -18,8 +18,8 @@ RSpec.describe Deck do
       top_card = deck.the_deck[-1]
       bottom_card = deck.the_deck[0]
       the_dealed_card = deck.deal(1)
-      expect(the_dealed_card).to eq [top_card]
-      expect(the_dealed_card).not_to eq [bottom_card]
+      expect(the_dealed_card).to eq(top_card)
+      expect(the_dealed_card).not_to eq(bottom_card)
     end
   end
 end
