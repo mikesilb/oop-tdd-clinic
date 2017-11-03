@@ -37,25 +37,34 @@ class Blackjack
         hit_or_stand_prompt
       end
       if @hit_stand == 'S'
-        stand
+        stand(:player)
       else
-        hit
+        hit(:player, :player_score)
       end
     end
   end
 
-  def hit
-    until (@hit_stand == "S") || (@game_data[:player_score] > 21)
-      @game_data[:player].cards.push(game_data[:deck].deal(1))
-      @game_data[:player_score] = @game_data[:player].calculate_hand
-      puts "Player was dealt #{@game_data[:player].cards[-1].rank}#{@game_data[:player].cards[-1].suit}"
-      puts "Player score: #{@game_data[:player_score]}"
+  def hit(person, person_score)
+    until (@hit_stand == "S") || (@game_data[person_score] > 21)
+      @game_data[person].cards.push(game_data[:deck].deal(1))
+      @game_data[person_score] = @game_data[person].calculate_hand
+      if person == :player
+        puts "Player was dealt #{@game_data[:player].cards[-1].rank}#{@game_data[:player].cards[-1].suit}"
+        puts "Player score: #{@game_data[:player_score]}"
+      elsif person == :computer
+        puts "Computer was dealt #{@game_data[:computer].cards[-1].rank}#{@game_data[:computer].cards[-1].suit}"
+        puts "Computer score: #{@game_data[:computer_score]}"
+      end
       hit_or_stand_prompt
     end
   end
 
-  def stand
-    puts "Am standing with a score of #{@game_data[:player_score]}."
+  def stand(person)
+    if person == :player
+      puts "Player standing with a score of #{@game_data[:player_score]}."
+    elsif
+      puts "Computer standing with a score of #{@game_data[:computer_score]}."
+    end
   end
 end
 
