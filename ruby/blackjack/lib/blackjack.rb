@@ -14,6 +14,7 @@ class Blackjack
     }
     game_data[:deck] = Deck.new
   end
+
   def initial_deal
     @game_data[:player] = Hand.new(game_data[:deck].deal(2))
     @game_data[:player].cards.each do |the_card|
@@ -24,54 +25,41 @@ class Blackjack
     @game_data[:computer] = Hand.new(@game_data[:deck].deal(2))
     @game_data[:computer_score] = @game_data[:computer].calculate_hand
   end
-  def hit_or_stand_input
-    score = @game_data[:player_score]
-    puts "Hit or stand (H/S):"
-    hit_stand = gets.chomp.upcase
-    until hit_stand == 'H' || hit_stand == 'S'
-      puts "This input is not accepted.  Please try again!"
-      puts "Hit or stand (H/S):"
-      hit_stand = gets.chomp.upcase
-    end
-    if hit_stand == 'H'
-      hit(hit_stand, score)
-    elsif hit_stand == 'S'
-      stand(score)
-    end
-  end
 
-  def hit(input, score)
-    until (input == "S") || (score > 21)
-      @game_data[:player].cards.push(game_data[:deck].deal(1))
-      score = @game_data[:player].calculate_hand
-      puts "Player was dealt #{@game_data[:player].cards[-1].rank}#{@game_data[:player].cards[-1].suit}"
-      puts "Player score: #{score}"
-      if score > 21
-        puts "Bust! You lose..."
+  def hit_or_stand_prompt
+    if @game_data[:player_score] > 21
+      puts "Bust! You lose..."
+    else
+      puts "Hit or stand (H/S):"
+      @hit_stand = gets.chomp.upcase
+      until @hit_stand == 'H' || @hit_stand == 'S'
+        puts "This input is not accepted.  Please try again!"
+        hit_or_stand_prompt
+      end
+      if @hit_stand == 'S'
+        stand
       else
-        puts "Hit or stand (H/S):"
-        input = gets.chomp.upcase
-          if input == 'S'
-            stand(score)
-          end
-        until input == 'H' || input == 'S'
-          puts "This input is not accepted.  Please try again!"
-          puts "Hit or stand (H/S):"
-          input = gets.chomp.upcase
-          if input == 'S'
-            stand(score)
-          end
-        end
+        hit
       end
     end
   end
 
-  def stand(score)
-    puts "Am standing with a score of #{score}."
+  def hit
+    until (@hit_stand == "S") || (@game_data[:player_score] > 21)
+      @game_data[:player].cards.push(game_data[:deck].deal(1))
+      @game_data[:player_score] = @game_data[:player].calculate_hand
+      puts "Player was dealt #{@game_data[:player].cards[-1].rank}#{@game_data[:player].cards[-1].suit}"
+      puts "Player score: #{@game_data[:player_score]}"
+      hit_or_stand_prompt
+    end
+  end
+
+  def stand
+    puts "Am standing with a score of #{@game_data[:player_score]}."
   end
 end
 
 
 bj = Blackjack.new
 bj.initial_deal
-bj.hit_or_stand_input
+bj.hit_or_stand_prompt
