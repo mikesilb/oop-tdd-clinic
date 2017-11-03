@@ -62,7 +62,7 @@ class Blackjack
   def stand(person)
     if person == :player
       puts "Player standing with a score of #{@game_data[:player_score]}."
-    elsif
+    elsif person == :computer
       puts "Computer standing with a score of #{@game_data[:computer_score]}."
     end
   end
