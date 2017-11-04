@@ -1,6 +1,7 @@
 require_relative "card"
 require_relative "deck"
 require_relative "hand"
+require 'pry'
 
 class Blackjack
   attr_reader :game_data
@@ -24,6 +25,7 @@ class Blackjack
     puts "Player score: #{@game_data[:player_score]}"
     @game_data[:computer] = Hand.new(@game_data[:deck].deal(2))
     @game_data[:computer_score] = @game_data[:computer].calculate_hand
+    # binding.pry
   end
 
   def hit_or_stand_prompt
@@ -39,25 +41,26 @@ class Blackjack
       if @hit_stand == 'S'
         stand(:player)
       else
-        hit(:player, :player_score)
+        until (@hit_stand == "S") || (@game_data[:player_score] > 21)
+          hit(:player, :player_score)
+          hit_or_stand_prompt
+        end
       end
     end
   end
 
   def hit(person, person_score)
-    until (@hit_stand == "S") || (@game_data[person_score] > 21)
-      @game_data[person].cards.push(game_data[:deck].deal(1))
-      @game_data[person_score] = @game_data[person].calculate_hand
-      if person == :player
-        puts "Player was dealt #{@game_data[:player].cards[-1].rank}#{@game_data[:player].cards[-1].suit}"
-        puts "Player score: #{@game_data[:player_score]}"
-      elsif person == :computer
-        puts "Computer was dealt #{@game_data[:computer].cards[-1].rank}#{@game_data[:computer].cards[-1].suit}"
-        puts "Computer score: #{@game_data[:computer_score]}"
-      end
-      hit_or_stand_prompt
+    @game_data[person].cards.push(game_data[:deck].deal(1))
+    @game_data[person_score] = @game_data[person].calculate_hand
+    if person == :player
+      puts "Player was dealt #{@game_data[:player].cards[-1].rank}#{@game_data[:player].cards[-1].suit}"
+      puts "Player score: #{@game_data[:player_score]}"
+    elsif person == :computer
+      puts "Computer was dealt #{@game_data[:computer].cards[-1].rank}#{@game_data[:computer].cards[-1].suit}"
+      puts "Computer score: #{@game_data[:computer_score]}"
     end
   end
+
 
   def stand(person)
     if person == :player
