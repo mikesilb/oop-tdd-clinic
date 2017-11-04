@@ -20,4 +20,20 @@ RSpec.describe Blackjack do
       expect(bj.game_data[:computer].cards.length).to eq 2
     end
   end
+  describe "#true_hit" do
+    it "will deal one card and the score will increase by the value of the dealt card" do
+      bj.initial_deal
+      the_player_score = bj.game_data[:player_score]
+      the_computer_score = bj.game_data[:computer_score]
+      # binding.pry
+      bj.hit(:player, :player_score)
+      expect(bj.game_data[:player].cards.length).to eq 3
+      expect(bj.game_data[:computer].cards.length).to eq 2
+      expect(bj.game_data[:player_score]).to be > the_player_score
+      expect(bj.game_data[:computer_score]).to eq the_computer_score
+      bj.hit(:computer, :computer_score)
+      expect(bj.game_data[:computer].cards.length).to eq 3
+      expect(bj.game_data[:computer_score]).to be > the_computer_score
+    end
+  end
 end
