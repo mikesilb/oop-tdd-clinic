@@ -23,35 +23,56 @@ RSpec.describe Blackjack do
   describe "#hit" do
     it "will deal one card and the score will increase by the value of the dealt card" do
       bj.initial_deal
-      the_player_score = bj.game_data[:player_score]
-      the_computer_score = bj.game_data[:computer_score]
-      bj.hit(:player, :player_score)
+      the_player_score = bj.game_data[:player_scores][-1]
+      the_computer_score = bj.game_data[:computer_scores][-1]
+      bj.hit(:player)
       expect(bj.game_data[:player].cards.length).to eq 3
       expect(bj.game_data[:computer].cards.length).to eq 2
-      expect(bj.game_data[:player_score]).to be > the_player_score
-      expect(bj.game_data[:computer_score]).to eq the_computer_score
-      bj.hit(:computer, :computer_score)
+      expect(bj.game_data[:player_scores][-1]).to be > the_player_score
+      expect(bj.game_data[:computer_scores][-1]).to eq the_computer_score
+      bj.hit(:computer)
       expect(bj.game_data[:computer].cards.length).to eq 3
-      expect(bj.game_data[:computer_score]).to be > the_computer_score
+      expect(bj.game_data[:computer_scores][-1]).to be > the_computer_score
     end
   end
   describe "#stand" do
     it "will not deal any cards and score will remain the same" do
       bj.initial_deal
-      the_player_score = bj.game_data[:player_score]
-      the_computer_score = bj.game_data[:computer_score]
+      the_player_score = bj.game_data[:player_scores][-1]
+      the_computer_score = bj.game_data[:computer_scores][-1]
       bj.stand(:player)
       expect(bj.game_data[:player].cards.length).to eq 2
-      expect(bj.game_data[:player_score]).to eq the_player_score
+      expect(bj.game_data[:player_scores][-1]).to eq the_player_score
 
       bj.stand(:computer)
       expect(bj.game_data[:computer].cards.length).to eq 2
-      expect(bj.game_data[:computer_score]).to eq the_computer_score
+      expect(bj.game_data[:computer_scores][-1]).to eq the_computer_score
 
-      bj.hit(:player, :player_score)
+      bj.hit(:player)
       bj.stand(:player)
       expect(bj.game_data[:player].cards.length).to eq 3
-      expect(bj.game_data[:player_score]).to be > the_player_score
+      expect(bj.game_data[:player_scores][-1]).to be > the_player_score
     end
+  end
+  describe "#dealer_moves" do
+    it "continues hitting until dealer's score is at least 17" do
+      bj.initial_deal
+      bj.stand(:player)
+      bj.dealer_moves
+      last_score = bj.game_data[:computer_scores][-2]
+      first_score = bj.game_data[:computer_scores][0]
+      if bj.game_data[:computer_scores].length > 1 && first_score < 17
+        expect(last_score).to be < 17
+      end
+    end
+    # it "outputs 'Bust! You win!' when dealer's score exceeds 21" do
+    #   bj.initial_deal
+    #   the_computer_score = bj.game_data[:computer_scores][-1]
+    #   bj.stand(:player)
+    #   bj.dealer_moves
+    #   if bj.game_data[:computer_scores][-1] > 21
+    #     expect { bj.dealer_moves }.to output("Bust! You Win!").to_stdout
+    #   end
+    # end
   end
 end
