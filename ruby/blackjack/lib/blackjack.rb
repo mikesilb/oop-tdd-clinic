@@ -104,8 +104,8 @@ end
 
 
 bj = Blackjack.new
-# bj.initial_deal
-# player_result= bj.hit_or_stand_prompt
-# if player_result != false
-#   bj.dealer_moves
-# end
+bj.initial_deal
+player_result= bj.hit_or_stand_prompt
+if player_result != false
+  bj.dealer_moves
+end
