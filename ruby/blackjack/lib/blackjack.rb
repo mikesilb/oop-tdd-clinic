@@ -3,7 +3,7 @@ require_relative "deck"
 require_relative "hand"
 
 class Blackjack
-  attr_reader :game_data, :computer_bust_output
+  attr_reader :game_data, :computer_bust_output, :player_win_loss
   def initialize
     @game_data = {
       deck: nil,
