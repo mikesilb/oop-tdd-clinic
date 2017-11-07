@@ -1,10 +1,9 @@
 require_relative "card"
 require_relative "deck"
 require_relative "hand"
-require 'pry'
 
 class Blackjack
-  attr_reader :game_data
+  attr_reader :game_data, :computer_bust_output
   def initialize
     @game_data = {
       deck: nil,
@@ -17,6 +16,7 @@ class Blackjack
     @game_data[:deck] = Deck.new
     @game_data[:player_scores][0] = 0
     @game_data[:computer_scores][0] = 0
+    @computer_bust_output = nil
   end
 
   def initial_deal
@@ -33,7 +33,7 @@ class Blackjack
   def hit_or_stand_prompt
     if @game_data[:player_scores][-1] > 21
       puts "Bust! You lose..."
-      game_data[:player_win_loss] = "loss"
+      @game_data[:player_win_loss] = "loss"
     else
       puts "Hit or stand (H/S):"
       @hit_stand = gets.chomp.upcase
@@ -50,7 +50,7 @@ class Blackjack
         end
       end
     end
-    if game_data[:player_win_loss] == "loss"
+    if @game_data[:player_win_loss] == "loss"
       false
     end
   end
@@ -86,17 +86,21 @@ class Blackjack
       hit(:computer)
       if @game_data[:computer_scores][-1] > 21
         puts "Bust! You Win"
-        "Bust! You Win!"
+        @computer_bust_output = "Bust! You Win"
+        @game_data[:player_win_loss] = "win"
       end
     end
     if @game_data[:computer_scores][-1] <= 21
       puts "Dealer stands.\n"
       if @game_data[:computer_scores][-1] > @game_data[:player_scores][-1]
         puts "Dealer wins."
+        @game_data[:player_win_loss] = "loss"
       elsif @game_data[:player_scores][-1] > @game_data[:computer_scores][-1]
         puts "Player wins!"
+        @game_data[:player_win_loss] = "win"
       else
         puts "Tie game"
+        @game_data[:player_win_loss] = "tie"
       end
     end
   end

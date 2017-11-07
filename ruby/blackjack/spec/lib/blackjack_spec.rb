@@ -65,14 +65,27 @@ RSpec.describe Blackjack do
         expect(last_score).to be < 17
       end
     end
-    # it "outputs 'Bust! You win!' when dealer's score exceeds 21" do
-    #   bj.initial_deal
-    #   the_computer_score = bj.game_data[:computer_scores][-1]
-    #   bj.stand(:player)
-    #   bj.dealer_moves
-    #   if bj.game_data[:computer_scores][-1] > 21
-    #     expect { bj.dealer_moves }.to output("Bust! You Win!").to_stdout
-    #   end
-    # end
+    it "outputs 'Bust! You win!' when dealer's score exceeds 21" do
+      bj.initial_deal
+      the_computer_score = bj.game_data[:computer_scores][-1]
+      bj.stand(:player)
+      bj.dealer_moves
+      if bj.game_data[:computer_scores][-1] > 21
+        expect(bj.computer_bust_output).to eq "Bust! You Win"
+      end
+    end
+    it "accurately asserts player win/loss/tie" do
+      bj.initial_deal
+      the_computer_score = bj.game_data[:computer_scores][-1]
+      bj.stand(:player)
+      bj.dealer_moves
+      if bj.game_data[:computer_scores][-1] > 21 || bj.game_data[:player_scores][-1] > bj.game_data[:computer_scores][-1]
+        expect(bj.game_data[:player_win_loss]).to eq "win"
+      elsif bj.game_data[:computer_scores][-1] == bj.game_data[:player_scores][-1]
+        expect(bj.game_data[:player_win_loss]).to eq "tie"
+      else
+        expect(bj.game_data[:player_win_loss]).to eq "loss"
+      end
+    end
   end
 end
