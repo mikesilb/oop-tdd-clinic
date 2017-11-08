@@ -1,0 +1,67 @@
+The program should satisfy the following user stories:
+
+1. Prompt for player's names
+
+As a player
+I want to enter my name
+So that I can be identified throughout the game
+
+Acceptance Criteria:
+
+A. Each player can enter their name
+B. The game cannot proceed until they each specify a name
+C. Each name must be unique
+
+
+
+2. Player to select a column
+
+As a player
+I want to drop a piece in a column
+So that I can attempt to win the game
+
+Acceptance Criteria:
+
+A. The player must specify a valid column. If they provide something invalid, inform them they must select a valid column and do not drop a game piece.
+B. When the player specifies a valid column, place their respective game piece in the first available row in that column.
+C. When the player specifies a valid column, it becomes the next players turn.
+
+
+
+3. Player selects a column that is full
+
+As a player
+I want to know I cannot drop a piece in a full column
+So that I can make an effective move
+
+Acceptance Criteria:
+
+A. When a player selects a column that is full of game pieces (there is no available row), they are told that the column is full and they are prompted to select another column.
+
+
+
+4. Player wins game
+
+As a player
+I want to know I've won the game
+So that I can feel accomplished in my victory
+
+Acceptance Criteria:
+
+A. Upon their turn, if a player drops a piece that makes a vertical or horizontal line of 4 of their pieces consecutively, they have won and the game is over.
+B. Inform the player of their victory, and ask if they want to play again.
+C. If they want to play again, keep the same players but clear the game board.
+
+
+
+5. Stalemate
+
+As a player
+I want to know the game is over when the board is full
+So we know the game has ended in a draw
+
+Acceptance Criteria:
+
+A. When the board is full, meaning all rows and columns are occupied, the game is at a stalemate, resulting in a draw.
+B. Inform the users that the game is a draw, and ask if they want to play again.
+C. If they want to play again, keep the same players but clear the game board.
