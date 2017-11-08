@@ -6,7 +6,7 @@ RSpec.describe Chip do
   let(:john_chip) { Chip.new(john.name, "X") }
   let(:computer_chip) { Chip.new(computer.name, 'O') }
 
-  describe "player" do
+  describe "chip" do
     it "defines a chip type by its owner and its symbol" do
       expect(john_chip.owner).to eq "John"
       expect(john_chip.symbol).to eq "X"
