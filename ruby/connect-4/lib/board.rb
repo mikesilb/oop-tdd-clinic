@@ -5,7 +5,7 @@ class Board
     @width = width
     @height = height
     x=0
-    @the_arr = [];
+    @the_grid = [];
     while x < @width
       y=0
       while y < @height
