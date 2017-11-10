@@ -18,23 +18,30 @@ class Board
   end
 
   def rendering
+    puts "\n"
     column_num = 0
-    print "  "
+    print " "
     while column_num < @column
-      print column_num
+      print " #{column_num}"
       column_num +=1
     end
     puts " "
     @the_grid.each do | the_location |
       if the_location.availability == true && the_location.location[0] % column == column - 1
-        puts ".|"
+        puts " .|"
+      elsif the_location.availability == false && the_location.location[0] % column == column - 1
+        puts " #{the_location.chip_at_position.symbol}|"
       elsif the_location.availability == true && the_location.location[0] == 0
         print "#{the_location.location[1]}|."
-      else
-        print '.'
+      elsif the_location.availability == false && the_location.location[0] == 0
+        print "#{the_location.location[1]}|#{the_location.chip_at_position.symbol}"
+      elsif the_location.availability == false
+        print " #{the_location.chip_at_position.symbol}"
+      elsif the_location.availability == true
+        print ' .'
       end
     end
   end
 end
-the_new_board = Board.new
-the_new_board.rendering
+# the_new_board = Board.new
+# the_new_board.rendering
