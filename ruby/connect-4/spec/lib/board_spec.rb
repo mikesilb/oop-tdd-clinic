@@ -5,11 +5,11 @@ RSpec.describe Board do
   let(:john_chip) { Chip.new(john.name, "X") }
   let(:computer) { Player.new("MyMacComputer", 3, 9.99, 21) }
   let(:computer_chip) { Chip.new(computer.name, 'O') }
-  let(:the_board) { Board.new(7, 6)}
+  let(:the_new_board) { Board.new(7, 6)}
   describe "board" do
     it "initializes the board conditions" do
-      expect(the_board.width).to eq 7
-      expect(the_board.height).to eq 6
+      expect(the_new_board.column).to eq 7
+      expect(the_new_board.row).to eq 6
     end
   end
 end
