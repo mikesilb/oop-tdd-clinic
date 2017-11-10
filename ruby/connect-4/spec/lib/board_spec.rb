@@ -10,6 +10,11 @@ RSpec.describe Board do
     it "initializes the board conditions" do
       expect(the_new_board.column).to eq 7
       expect(the_new_board.row).to eq 6
+      expect(the_new_board.the_grid.length).to eq 42
+      expect(the_new_board.the_grid[6].location[0]).to eq 6
+      expect(the_new_board.the_grid[6].location[1]).to eq 5
+      expect(the_new_board.the_grid[-1].location[0]).to eq 6
+      expect(the_new_board.the_grid[-1].location[1]).to eq 0
     end
   end
 end
