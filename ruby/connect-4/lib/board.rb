@@ -1,5 +1,5 @@
 require_relative './position'
-require 'pry'
+
 class Board
   attr_reader :column, :row, :the_grid
   def initialize(column = 7, row = 6)
@@ -42,6 +42,23 @@ class Board
       end
     end
   end
+
+  def check_for_availability(column, row)
+    available = nil
+    the_grid.each do | the_location |
+      if (the_location.location == [column, row]) && (the_location.availability == true)
+        available = true
+      elsif (the_location.location == [column, row]) && (the_location.availability == false)
+        available = false
+      end
+    end
+    available
+  end
+
+  # def identify_drop_position
+  #   row = 0
+  #   until [@column, row] is !occupied
+  #
+  #
+  # end
 end
-# the_new_board = Board.new
-# the_new_board.rendering
