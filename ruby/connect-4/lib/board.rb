@@ -1,4 +1,6 @@
 require_relative './position'
+require_relative './chip'
+require 'pry'
 
 class Board
   attr_reader :column, :row, :the_grid
@@ -55,10 +57,12 @@ class Board
     available
   end
 
-  # def identify_drop_position
-  #   row = 0
-  #   until [@column, row] is !occupied
-  #
-  #
-  # end
+  def occupying_the_position(column, row, chip)
+    the_grid.each do | the_location |
+      if (the_location.location == [column, row])
+        the_location.occupy(chip)
+      end
+    end
+  end
+
 end

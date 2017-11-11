@@ -7,6 +7,7 @@ RSpec.describe Board do
   let(:computer_chip) { Chip.new(computer.name, 'O') }
   let(:the_new_board) { Board.new(7, 6)}
 
+
   describe "board" do
     it "initializes the board conditions" do
       expect(the_new_board.column).to eq 7
@@ -31,6 +32,13 @@ RSpec.describe Board do
       the_new_board.the_grid[30].occupy(computer_chip)
       expect(the_new_board.check_for_availability(2,1)).to eq false
       expect(the_new_board.check_for_availability(3,4)).to eq false
+    end
+  end
+  describe "#occupying_the_position" do
+    it "occupies the specific position on the board" do
+      expect(the_new_board.check_for_availability(3,2)).to eq true
+      the_new_board.occupying_the_position(3,2, :john_chip)
+      expect(the_new_board.check_for_availability(3,2)).to eq false
     end
   end
 end
