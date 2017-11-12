@@ -1,7 +1,3 @@
-require_relative './position'
-require_relative './chip'
-require 'pry'
-
 class Board
   attr_reader :column, :row, :the_grid
   def initialize(column = 7, row = 6)
