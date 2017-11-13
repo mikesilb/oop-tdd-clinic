@@ -3,7 +3,6 @@ require_relative "chip"
 require_relative "position"
 require_relative "board"
 require_relative "move"
-require 'pry'
 
 class Connect4
   attr_reader :game_data
