@@ -152,13 +152,4 @@ class Board
     end
     output
   end
-
-  def is_a_connect4?
-    is_connect4 = nil
-    #NEEDS TO FILL IN A TON OF STUFF HERE
-    is_connect4
-  end
-
 end
-# b1 = Board.new
-# binding.pry
