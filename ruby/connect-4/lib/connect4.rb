@@ -61,10 +61,19 @@ def the_game
   c4.name_input(:Player_1)
   c4.name_input(:Player_2)
   c4.game_data[:the_game_board].rendering
-  while c4.game_data[:Player_1_chip_total] > 0 && c4.game_data[:Player_2_chip_total] > 0 && c4.game_data[:the_game_board].is_a_connect4? == false
+  while c4.game_data[:Player_1_chip_total] > 0 && c4.game_data[:Player_2_chip_total] > 0
     c4.make_a_move(c4.game_data[:Player_1], c4.game_data[:Player_1_chip])
+    if c4.game_data[:the_game_board].check_board_for_horiz_connect4?('X') == true || c4.game_data[:the_game_board].check_board_for_vertical_connect4?('X') == true
+      puts "The game is over and player 1 wins!"
+      return
+    end
     c4.make_a_move(c4.game_data[:Player_2], c4.game_data[:Player_2_chip])
+    if c4.game_data[:the_game_board].check_board_for_horiz_connect4?('O') == true || c4.game_data[:the_game_board].check_board_for_vertical_connect4?('O') == true
+      puts "The game is over and player 2 wins!"
+      return
+    end
   end
+  puts "This game is a stalemate!"
 end
 
-# the_game
+the_game
