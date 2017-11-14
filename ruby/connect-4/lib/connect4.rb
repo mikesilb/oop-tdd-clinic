@@ -61,10 +61,10 @@ def the_game
   c4.name_input(:Player_1)
   c4.name_input(:Player_2)
   c4.game_data[:the_game_board].rendering
-  while c4.game_data[:Player_1_chip_total] > 0 && c4.game_data[:Player_2_chip_total] > 0
+  while c4.game_data[:Player_1_chip_total] > 0 && c4.game_data[:Player_2_chip_total] > 0 && c4.game_data[:the_game_board].is_a_connect4? == false
     c4.make_a_move(c4.game_data[:Player_1], c4.game_data[:Player_1_chip])
     c4.make_a_move(c4.game_data[:Player_2], c4.game_data[:Player_2_chip])
   end
 end
 
-the_game
+# the_game

@@ -34,6 +34,42 @@ RSpec.describe Board do
       expect(the_new_board.check_for_availability(3,4)).to eq false
     end
   end
+
+  describe "#has_a_chip?" do
+    it "returns true if the specific chip symbol is present at a given position" do
+      the_new_board.the_grid[10].occupy(john_chip)
+      expect(the_new_board.has_a_chip?(3, 4, "X")).to eq true
+      expect(the_new_board.has_a_chip?(3, 4, "O")).to eq false
+      the_new_board.the_grid[30].occupy(computer_chip)
+      expect(the_new_board.has_a_chip?(2, 1, "O")).to eq true
+      expect(the_new_board.has_a_chip?(2, 1, "X")).to eq false
+    end
+  end
+
+  describe "#is_a_horizontal_connect4?" do
+    it "returns true if a horizontal connect4 is found for a given chip symbol" do
+      expect(the_new_board.is_a_horizontal_connect4?(1, 'X')).to eq false
+      the_new_board.the_grid[30].occupy(john_chip)
+      the_new_board.the_grid[31].occupy(john_chip)
+      the_new_board.the_grid[32].occupy(john_chip)
+      expect(the_new_board.is_a_horizontal_connect4?(1, 'X')).to eq false
+      the_new_board.the_grid[33].occupy(john_chip)
+      expect(the_new_board.is_a_horizontal_connect4?(1, 'X')).to eq true
+    end
+  end
+
+  describe "#is_a_vertical_connect4?" do
+    it "returns true if a vertical connect4 is found for a given chip symbol" do
+      expect(the_new_board.is_a_vertical_connect4?(2, 'X')).to eq false
+      the_new_board.the_grid[37].occupy(john_chip)
+      the_new_board.the_grid[30].occupy(john_chip)
+      the_new_board.the_grid[23].occupy(john_chip)
+      expect(the_new_board.is_a_vertical_connect4?(2, 'X')).to eq false
+      the_new_board.the_grid[16].occupy(john_chip)
+      expect(the_new_board.is_a_vertical_connect4?(2, 'X')).to eq true
+    end
+  end
+
   describe "#occupying_the_position" do
     it "occupies the specific position on the board" do
       expect(the_new_board.check_for_availability(3,2)).to eq true
