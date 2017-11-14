@@ -98,6 +98,23 @@ class Board
     horizontal_connect4
   end
 
+  def check_board_for_horiz_connect4?(symbol)
+    output = nil
+    row = 0
+    while row < @row
+      if is_a_horizontal_connect4?(row, symbol) == true
+        output = true
+        return output
+      else
+      end
+      row += 1
+    end
+    if output == nil
+      output = false
+    end
+    output
+  end
+
   def is_a_vertical_connect4?(column, symbol)
     vertical_connect4 = nil
     row = 0
@@ -117,6 +134,23 @@ class Board
       vertical_connect4 = false
     end
     vertical_connect4
+  end
+
+  def check_board_for_vertical_connect4?(symbol)
+    output = nil
+    column = 0
+    while column < @column
+      if is_a_vertical_connect4?(column, symbol) == true
+        output = true
+        return output
+      else
+      end
+      column += 1
+    end
+    if output == nil
+      output = false
+    end
+    output
   end
 
   def is_a_connect4?

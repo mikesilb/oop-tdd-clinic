@@ -58,6 +58,18 @@ RSpec.describe Board do
     end
   end
 
+  describe "#check_board_for_horiz_connect4" do
+    it "returns true if a horizontal connect4 is found throughout the board" do
+      the_new_board.the_grid[30].occupy(john_chip)
+      the_new_board.the_grid[31].occupy(john_chip)
+      the_new_board.the_grid[32].occupy(john_chip)
+      expect(the_new_board.check_board_for_horiz_connect4?('X')).to eq false
+      the_new_board.the_grid[33].occupy(john_chip)
+      expect(the_new_board.is_a_horizontal_connect4?(1, 'X')).to eq true
+      expect(the_new_board.check_board_for_horiz_connect4?('X')).to eq true
+    end
+  end
+
   describe "#is_a_vertical_connect4?" do
     it "returns true if a vertical connect4 is found for a given chip symbol" do
       expect(the_new_board.is_a_vertical_connect4?(2, 'X')).to eq false
@@ -67,6 +79,20 @@ RSpec.describe Board do
       expect(the_new_board.is_a_vertical_connect4?(2, 'X')).to eq false
       the_new_board.the_grid[16].occupy(john_chip)
       expect(the_new_board.is_a_vertical_connect4?(2, 'X')).to eq true
+    end
+  end
+
+  describe "#check_board_for_vertical_connect4" do
+    it "returns true if a vertical connect4 is found throughout the board" do
+      the_new_board.the_grid[37].occupy(john_chip)
+      the_new_board.rendering
+      the_new_board.the_grid[30].occupy(john_chip)
+      the_new_board.the_grid[23].occupy(john_chip)
+      expect(the_new_board.check_board_for_vertical_connect4?('X')).to eq false
+      the_new_board.the_grid[16].occupy(john_chip)
+      the_new_board.rendering
+      expect(the_new_board.is_a_vertical_connect4?(2, 'X')).to eq true
+      expect(the_new_board.check_board_for_vertical_connect4?('X')).to eq true
     end
   end
 
