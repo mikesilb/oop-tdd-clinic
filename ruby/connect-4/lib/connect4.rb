@@ -14,7 +14,7 @@ class Connect4
       Player_2_chip: nil,
       Player_1_chip_total: nil,
       Player_2_chip_total: nil,
-      the_game_board: Board.new()
+      the_game_board: nil
     }
   end
   def name_input(which_player)
@@ -54,26 +54,48 @@ class Connect4
     end
     @game_data[:the_game_board].rendering
   end
-end
 
-def the_game
-  c4 = Connect4.new
-  c4.name_input(:Player_1)
-  c4.name_input(:Player_2)
-  c4.game_data[:the_game_board].rendering
-  while c4.game_data[:Player_1_chip_total] > 0 && c4.game_data[:Player_2_chip_total] > 0
-    c4.make_a_move(c4.game_data[:Player_1], c4.game_data[:Player_1_chip])
-    if c4.game_data[:the_game_board].check_board_for_horiz_connect4?('X') == true || c4.game_data[:the_game_board].check_board_for_vertical_connect4?('X') == true
-      puts "The game is over and player 1 wins!"
-      return
+  def play_the_game
+    @game_data[:the_game_board] = Board.new
+    @game_data[:the_game_board].rendering
+    @game_data[:Player_1_chip_total] = (@game_data[:the_game_board].row * @game_data[:the_game_board].column)/2
+    @game_data[:Player_2_chip_total] = @game_data[:Player_1_chip_total]
+    @game_data[:Player_1].num_chips_remain = @game_data[:Player_1_chip_total]
+    @game_data[:Player_2].num_chips_remain = @game_data[:Player_2_chip_total]
+    while @game_data[:Player_1_chip_total] > 0 && @game_data[:Player_2_chip_total] > 0
+      make_a_move(@game_data[:Player_1], @game_data[:Player_1_chip])
+      if @game_data[:the_game_board].check_board_for_horiz_connect4?('X') == true || @game_data[:the_game_board].check_board_for_vertical_connect4?('X') == true
+        puts "The game is over and player 1 wins!"
+        return
+      end
+      make_a_move(@game_data[:Player_2], @game_data[:Player_2_chip])
+      if @game_data[:the_game_board].check_board_for_horiz_connect4?('O') == true || @game_data[:the_game_board].check_board_for_vertical_connect4?('O') == true
+        puts "The game is over and player 2 wins!"
+        return
+      end
     end
-    c4.make_a_move(c4.game_data[:Player_2], c4.game_data[:Player_2_chip])
-    if c4.game_data[:the_game_board].check_board_for_horiz_connect4?('O') == true || c4.game_data[:the_game_board].check_board_for_vertical_connect4?('O') == true
-      puts "The game is over and player 2 wins!"
-      return
+    puts "This game is a stalemate!"
+  end
+
+  def are_we_interested?(interest_var)
+    while interest_var == true
+      play_the_game
+      response = nil
+      while response != 'Y' && response != 'N'
+        puts "Would you like to play again (Y|N) ?"
+        response = gets.chomp.upcase
+        if response == 'N'
+          interest_var = false
+          puts "Great game!!!"
+        end
+      end
     end
   end
-  puts "This game is a stalemate!"
+
 end
 
-the_game
+interest_to_play = true
+c4 = Connect4.new
+c4.name_input(:Player_1)
+c4.name_input(:Player_2)
+c4.are_we_interested?(interest_to_play)
