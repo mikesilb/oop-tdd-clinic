@@ -22,8 +22,30 @@ class Zoo
       false
     end
   end
+
   def add_animal(the_animal)
-    @cages[0].animal = the_animal
+    @cages.each do |cage|
+      if cage.empty?
+        cage.animal = the_animal
+        return
+      end
+    end
+    raise ZooAtCapacity
   end
 
+  def visit
+    visit_greet = ""
+    @employees.each do |employee|
+      visit_greet += "#{employee.greet}\n"
+    end
+    @cages.each do |cage|
+      if cage.empty? == false
+        visit_greet += "#{cage.animal.speak}\n"
+      end
+     end
+    visit_greet
+  end
+end
+
+class ZooAtCapacity < StandardError
 end
