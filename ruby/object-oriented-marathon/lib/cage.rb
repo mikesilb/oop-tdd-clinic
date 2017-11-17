@@ -1,4 +1,3 @@
-require_relative './gorilla'
 class Cage
   attr_accessor :animal
   def initialize
