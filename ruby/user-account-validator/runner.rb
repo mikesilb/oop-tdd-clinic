@@ -36,4 +36,12 @@ users = [
   }
 ]
 
-users.map { |user| UserAccountValidator.new(user) }
+# users.map { |user| UserAccountValidator.new(user) }
+
+users.each do |user|
+  begin
+    UserAccountValidator.new(user)
+  rescue StandardError => e
+    puts "#{user}, #{e}\n"
+  end
+end
