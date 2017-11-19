@@ -42,6 +42,6 @@ users.each do |user|
   begin
     UserAccountValidator.new(user)
   rescue StandardError => e
-    puts "#{user}, #{e}"
+    puts "#{user}, #{e}\n"
   end
 end
