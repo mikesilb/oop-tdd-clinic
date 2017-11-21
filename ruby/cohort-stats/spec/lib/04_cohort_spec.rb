@@ -129,7 +129,7 @@ describe Cohort do
     end
 
     it "includes the cohort title" do
-      expect(cohort_with_students.roster).to include("Philly Cheese Stack")
+      expect(cohort_with_students.roster).to include("Philtastic 4")
     end
 
     it "includes the student names" do
