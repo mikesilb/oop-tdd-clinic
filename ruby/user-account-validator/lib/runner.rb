@@ -36,8 +36,6 @@ users = [
   }
 ]
 
-# users.map { |user| UserAccountValidator.new(user) }
-
 users.each do |user|
   begin
     UserAccountValidator.new(user)
