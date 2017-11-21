@@ -1,0 +1,2 @@
+class SystemCheck
+end
