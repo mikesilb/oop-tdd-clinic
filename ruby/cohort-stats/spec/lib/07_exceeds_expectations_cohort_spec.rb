@@ -17,11 +17,11 @@ describe Cohort do
     cohort
   end
 
-  xdescribe "#system_check_completed?" do
+  describe "#system_check_completed?" do
     let(:sam)  { cohort_with_students.students.first }
     let(:josh) { cohort_with_students.students[1] }
     let(:toby) { cohort_with_students.students.last }
-    
+
     it "returns 'true' if everyone has submitted" do
 
       system_check = SystemCheck.new("Grocery List using Postgres", Date.parse("2015/08/28"))
