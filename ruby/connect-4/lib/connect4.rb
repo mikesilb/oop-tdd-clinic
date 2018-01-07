@@ -4,6 +4,7 @@ require_relative "position"
 require_relative "board"
 require_relative "move"
 
+
 class Connect4
   attr_reader :game_data
   def initialize
@@ -42,7 +43,12 @@ class Connect4
     the_result = nil
     until the_result == true
       puts "#{which_player.name}, which column do you choose to insert your chip?"
-      column = gets.chomp.to_i
+      column = gets.chomp
+      if (column !~ /[\D]+[\d]+/)
+        if (column =~ /[\d]+/)
+          column = column.to_i
+        end
+      end
       the_move = Move.new(which_players_chips, column)
       the_result = the_move.identify_drop_position(@game_data[:the_game_board])
     end
